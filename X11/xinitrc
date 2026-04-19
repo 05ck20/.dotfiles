@@ -1,3 +1,4 @@
 export GDK_DPI_SCALE=1.25
 numlockx on
+feh --bg-scale ~/.dotfiles/wallpapers/skull.jpg
 exec dwm

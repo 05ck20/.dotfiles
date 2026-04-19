@@ -1,0 +1,7 @@
+[user]
+	name = 05ck20
+	email = 162478388+05ck20@users.noreply.github.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main

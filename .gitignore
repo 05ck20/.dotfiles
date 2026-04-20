@@ -1,0 +1,6 @@
+suckless/dwm/dwm
+suckless/dwm/*.o
+suckless/dwm/*.orig
+suckless/dwm/*.rej
+
+zsh/.zcompdump

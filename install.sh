@@ -10,5 +10,6 @@ ln -sfn "$DOTFILES/git"                 "$TARGET/.config/git"
 ln -sfn "$DOTFILES/nvim"                "$TARGET/.config/nvim"
 sudo ln -sfn "$DOTFILES/nftables.conf"  "/etc/nftables.conf"
 ln -sfn "$DOTFILES/X11"                 "$TARGET/.config/X11"
+sudo make -C "$DOTFILES/suckless/dwm" clean install
 
 echo "Done."

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Get brightness info from brightnessctl
+current=$(cat /sys/class/backlight/*/brightness)
+max=$(cat /sys/class/backlight/*/max_brightness)
+brightness=$(awk "BEGIN {printf \"%d\", ($current/$max)*100}")
+
+if [ "$brightness" -le 20 ]; then
+    icon="󰃞 "
+elif [ "$brightness" -lt 60 ]; then
+    icon="󰃟 "
+else
+    icon="󰃠 "
+fi
+
+echo "$icon $brightness%"

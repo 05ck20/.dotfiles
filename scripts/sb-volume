@@ -1,0 +1,28 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+    2) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ; pkill -RTMIN+5 dwmblocks ;;
+    4) wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ --limit 1.0 ; pkill -RTMIN+5 dwmblocks ;;
+    5) wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- ; pkill -RTMIN+5 dwmblocks ;;
+esac
+
+# Get volume info from wpctl
+volume_info=$(wpctl get-volume @DEFAULT_SINK@)
+
+# Check if muted
+if echo "$volume_info" | grep -q "\[MUTED\]"; then
+    echo "  mute"
+else
+    # Extract volume level (e.g. "Volume: 0.75" → 75)
+    volume=$(echo "$volume_info" | awk '{printf "%d", $2 * 100}')
+
+    if [ "$volume" -eq 0 ]; then
+        icon=" "
+    elif [ "$volume" -lt 50 ]; then
+        icon=" "
+    else
+        icon=" "
+    fi
+
+    echo "$icon $volume%"
+fi

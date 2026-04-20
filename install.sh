@@ -11,5 +11,6 @@ ln -sfn "$DOTFILES/nvim"                "$TARGET/.config/nvim"
 sudo ln -sfn "$DOTFILES/nftables.conf"  "/etc/nftables.conf"
 ln -sfn "$DOTFILES/X11"                 "$TARGET/.config/X11"
 sudo make -C "$DOTFILES/suckless/dwm" clean install
+sudo make -C "$DOTFILES/suckless/dwmblocks-async" clean install
 
 echo "Done."

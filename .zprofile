@@ -1,5 +1,7 @@
 export TERMINAL=alacritty
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export XDG_CONFIG_HOME="$HOME/.config"  # Where user-specific configurations should be written (analogous to /etc).
 export XDG_DATA_HOME="$HOME/.local/share" # Where user-specific data files should be written (analogous to /usr/share).
 export XDG_STATE_HOME="$HOME/.local/state" # Where user-specific state files should be written (analogous to /var/lib).

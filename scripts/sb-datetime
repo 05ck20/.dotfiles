@@ -1,0 +1,12 @@
+#!/bin/sh
+TOGGLE_FILE="/tmp/dwmblocks_clock_toggle"
+
+case "$BLOCK_BUTTON" in
+    4|5) [ -f "$TOGGLE_FILE" ] && rm "$TOGGLE_FILE" || touch "$TOGGLE_FILE" ;;
+esac
+
+if [ -f "$TOGGLE_FILE" ]; then
+    date +"%Y-%m-%d"
+else
+    date +"%H:%M:%S"
+fi

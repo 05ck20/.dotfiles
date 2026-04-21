@@ -1,0 +1,27 @@
+#!/bin/bash
+# changeVolume
+
+if [ "$1" = "toggle" ]; then
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+else
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ "$@" --limit 1.0
+fi
+
+# Query current volume (returns float like 0.75)
+volume_raw="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+
+# Check if muted (output looks like "Volume: 0.75 [MUTED]")
+if echo "$volume_raw" | grep -q "\[MUTED\]"; then
+    notify-send -a "changeVolume" -u low \
+        -h string:x-dunst-stack-tag:myvolume \
+        "Volume muted"
+else
+    # Convert float (e.g. 0.75) to percentage integer
+    volume="$(echo "$volume_raw" | awk '{printf "%d", $2 * 100}')"
+    notify-send -a "changeVolume" -u low \
+        -h string:x-dunst-stack-tag:myvolume \
+        -h int:value:"$volume" \
+        "Volume: ${volume}%"
+fi
+
+pkill -RTMIN+5 dwmblocks

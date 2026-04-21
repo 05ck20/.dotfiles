@@ -96,11 +96,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_underscore,             7)
 	TAGKEYS(                        XK_ccedilla,               8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { 0,                            XF86XK_AudioMute, spawn,   SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -RTMIN+5 dwmblocks") },
-    { 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0 && pkill -RTMIN+5 dwmblocks") },
-    { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -RTMIN+5 dwmblocks") },
-    { 0,                            XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl set 5%+ && pkill -RTMIN+6 dwmblocks") },
-    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 5%- && pkill -RTMIN+6 dwmblocks") },
+    { 0,                            XF86XK_AudioMute, spawn,   SHCMD("dwm-volume toggle") },
+    { 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("dwm-volume 5%+") },
+    { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("dwm-volume 5%-") },
+    { 0,                            XF86XK_MonBrightnessUp, spawn, SHCMD("dwm-brightness 5%+") },
+    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("dwm-brightness 5%-") },
 };
 
 /* button definitions */

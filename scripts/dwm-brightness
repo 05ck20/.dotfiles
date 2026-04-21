@@ -1,0 +1,17 @@
+#!/bin/bash
+
+brightnessctl set "$@"
+
+# Query current and max brightness
+current="$(brightnessctl get)"
+max="$(brightnessctl max)"
+
+# Calculate percentage
+percent="$(( current * 100 / max ))"
+
+notify-send -a "changeBrightness" -u low \
+    -h string:x-dunst-stack-tag:mybrightness \
+    -h int:value:"$percent" \
+    "Brightness: ${percent}%"
+
+pkill -RTMIN+6 dwmblocks

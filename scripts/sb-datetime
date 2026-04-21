@@ -1,4 +1,5 @@
 #!/bin/sh
+
 TOGGLE_FILE="/tmp/dwmblocks_clock_toggle"
 
 case "$BLOCK_BUTTON" in

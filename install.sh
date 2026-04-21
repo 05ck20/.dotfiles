@@ -16,5 +16,6 @@ sudo make -C "$DOTFILES/suckless/dmenu" clean install
 sudo make -C "$DOTFILES/suckless/st" clean install
 sudo make -C "$DOTFILES/suckless/slock" clean install
 ln -sfn "$DOTFILES/dunst"               "$TARGET/.config/dunst"
+ln -sfn "$DOTFILES/scripts"             "$TARGET/.local/bin"
 
 echo "Done."

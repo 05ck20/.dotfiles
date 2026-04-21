@@ -21,6 +21,7 @@
 #define BLOCKS(X)                   \
     X("", "sb-brightness",    0, 6) \
     X("", "sb-volume",        0, 5) \
-    X("", "sb-datetime",      1, 1) \
+    X("󰥔  ", "sb-datetime",   1, 1) \
+    X("", "sb-battery",      0, 2) \
 
 #endif  // CONFIG_H

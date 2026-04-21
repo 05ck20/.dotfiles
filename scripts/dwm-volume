@@ -1,5 +1,4 @@
-#!/bin/bash
-# changeVolume
+#!/bin/sh
 
 if [ "$1" = "toggle" ]; then
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle

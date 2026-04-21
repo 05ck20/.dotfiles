@@ -9,7 +9,7 @@ static const char *fonts[]          = { "Iosevka Nerd Font:size=12" };
 static const char dmenufont[]       = "Iosevka Nerd Font:size=12";
 static const char col_dark[]        = "#282828";
 static const char col_light[]       = "#ebdbb2";
-static const char col_gray1[]       = "#584945";
+static const char col_gray1[]       = "#504945";
 static const char col_gray2[]       = "#7c6f64";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */

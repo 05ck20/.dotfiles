@@ -14,6 +14,7 @@ sudo make -C "$DOTFILES/suckless/dwm" clean install
 sudo make -C "$DOTFILES/suckless/dwmblocks-async" clean install
 sudo make -C "$DOTFILES/suckless/dmenu" clean install
 sudo make -C "$DOTFILES/suckless/st" clean install
+sudo make -C "$DOTFILES/suckless/slock" clean install
 ln -sfn "$DOTFILES/dunst"               "$TARGET/.config/dunst"
 
 echo "Done."

@@ -1,15 +1,9 @@
+suckless/**/*.o
+suckless/**/*.orig
+suckless/**/*.rej
+suckless/**/build/*
 suckless/dwm/dwm
-suckless/dwm/*.o
-suckless/dwm/*.orig
-suckless/dwm/*.rej
-
-suckless/dwmblocks-async/build/*
-
-suckless/dmenu/*.o
+suckless/st/st
 suckless/dmenu/dmenu
-suckless/dmenu/stest
-suckless/dmenu/dmenu_run
-suckless/dmenu/dmenu_path
-suckless/dmenu/*.orig
 
 zsh/.zcompdump

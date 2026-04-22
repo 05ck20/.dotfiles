@@ -4,6 +4,7 @@ clipmenu
 dunst
 efibootmgr
 feh
+j4-dmenu-desktop
 libnotify
 numlockx
 rtkit

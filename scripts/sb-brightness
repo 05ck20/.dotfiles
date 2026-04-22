@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Get brightness info from brightnessctl
 current=$(cat /sys/class/backlight/*/brightness)

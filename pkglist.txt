@@ -5,6 +5,7 @@ dunst
 efibootmgr
 feh
 j4-dmenu-desktop
+iw
 libnotify
 numlockx
 rtkit

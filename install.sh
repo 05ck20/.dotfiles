@@ -20,5 +20,6 @@ sudo make -C "$DOTFILES/suckless/slock" clean install
 ln -sfn "$DOTFILES/dunst"               "$TARGET/.config/dunst"
 ln -sfn "$DOTFILES/scripts"             "$TARGET/.local/bin"
 sudo ln -sfn "$DOTFILES/udev/99-power.rules"  "/etc/udev/rules.d/99-power.rules"
+sudo cp "$DOTFILES/networkmanager/99-dwmblocks" "/etc/NetworkManager/dispatcher.d/"
 
 echo "Done."

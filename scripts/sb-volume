@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 case $BLOCK_BUTTON in
     2) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ; pkill -RTMIN+5 dwmblocks ;;

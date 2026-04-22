@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+case $BLOCK_BUTTON in
+    2) dm-network ;;
+esac
+
+if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
+	wifiname="$(iw dev 2>/dev/null | awk '/ssid/{print $2}')"
+	neticon="󰖩  ${wifiname:-unknown}"
+elif [ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] ; then
+	neticon="  "
+elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
+	[ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && neticon="󰖪  disc" || neticon="❌ "
+else
+	neticon="❌ "
+fi
+
+[ -n "$(cat /sys/class/net/proton*/operstate 2>/dev/null)" ] && tunicon=" "
+printf "%s%s\n" "$tunicon" "$neticon"

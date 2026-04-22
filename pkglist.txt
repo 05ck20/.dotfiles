@@ -1,0 +1,13 @@
+base-devel
+brightnessctl
+clipmenu
+dunst
+efibootmgr
+feh
+libnotify
+numlockx
+rtkit
+ttf-iosevka-nerd
+xcb-util
+xorg-xinit
+zsh

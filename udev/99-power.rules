@@ -1,0 +1,2 @@
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="0", RUN+="/usr/bin/pkill -RTMIN+2 dwmblocks"
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", ATTR{online}=="1", RUN+="/usr/bin/pkill -RTMIN+2 dwmblocks"

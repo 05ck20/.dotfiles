@@ -10,9 +10,12 @@ autoload -U colors && colors
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 setopt auto_menu menu_complete
 bindkey '^[[Z' reverse-menu-complete
+
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 setopt extended_glob
 
@@ -29,6 +32,3 @@ PROMPT=$'┌─%B%(?..%F{red}✗ %f)$(virtualenv_prompt_info)%F{yellow}%n@%m%f %
 
 source $ZDOTDIR/aliases
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word

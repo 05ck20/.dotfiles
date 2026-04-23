@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+DMENU_OPTS="-c -bw 1 -l 10"
+
+show_status() {
+    echo "$1" | dmenu $DMENU_OPTS -p "${2:-Status:}" > /dev/null
+}
+
+get_current() {
+    nmcli -t -f active,ssid dev wifi \
+        | grep '^yes' \
+        | cut -d: -f2
+}
+
+main() {
+    CURRENT=$(get_current)
+
+    RAW_SSIDS=$(nmcli -t -f SSID device wifi list 2>/dev/null | sed '/^$/d' | sort -u)
+
+    if [ -z "$RAW_SSIDS" ]; then
+        show_status "No networks found." "WiFi:"
+        exit 1
+    fi
+
+    MENU="@ Reload"$'\n'
+    if [ -n "$CURRENT" ]; then
+        MENU+="$CURRENT [connected]"$'\n'
+    fi
+    while IFS= read -r ssid; do
+        [ "$ssid" = "$CURRENT" ] && continue
+        MENU+="$ssid"$'\n'
+    done <<< "$RAW_SSIDS"
+
+    CHOICE=$(echo "$MENU" | dmenu $DMENU_OPTS -p "WiFi network:")
+    [ -z "$CHOICE" ] && exit 0
+
+    if [ "$CHOICE" = "@ Reload" ]; then
+        nmcli device wifi rescan 2>/dev/null
+        main
+        return
+    fi
+
+    SSID="${CHOICE% \[connected\]}"
+
+    if [ "$SSID" = "$CURRENT" ]; then
+        DEVICE=$(nmcli -t -f DEVICE,STATE dev | grep ':connected' | cut -d: -f1 | head -1)
+        if nmcli device disconnect "$DEVICE" 2>/dev/null; then
+            show_status "Disconnected from $SSID." "Status:"
+        else
+            show_status "Failed to disconnect from $SSID." "Error:"
+        fi
+        main
+        return
+    fi
+
+    SAVED=$(nmcli -t -f NAME connection show | grep -Fx "$SSID")
+    if [ -n "$SAVED" ]; then
+        if nmcli connection up "$SSID" 2>/dev/null; then
+            show_status "Connected to $SSID." "Status:"
+        else
+            show_status "Failed to connect to $SSID." "Error:"
+        fi
+        main
+        return
+    fi
+
+    PASSWORD=$(echo "" | dmenu $DMENU_OPTS -p "Password for '$SSID':")
+    [ -z "$PASSWORD" ] && main && return
+
+    if nmcli device wifi connect "$SSID" password "$PASSWORD" 2>/dev/null; then
+        show_status "Connected to $SSID." "Status:"
+    else
+        nmcli connection delete "$SSID" 2>/dev/null
+        show_status "Failed to connect to $SSID." "Error:"
+    fi
+
+    main
+}
+
+main

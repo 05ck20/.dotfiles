@@ -8,6 +8,8 @@ zmodload zsh/complist
 autoload -U compinit && compinit
 autoload -U colors && colors
 
+bindkey -e
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
